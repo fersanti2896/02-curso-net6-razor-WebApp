@@ -1,0 +1,55 @@
+﻿@page
+@model WebAppRazor.Pages.Cursos.IndexModel
+@{
+    ViewData["Title"] = "Lista de Cursos";
+}
+
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-sm-6">
+                <h2 class="text">Lista de Cursos</h2>
+            </div>
+            <div class="col-sm-6">
+                <a asp-page="Crear" class="btn btn-primary">Crear Nuevo Curso</a>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        @if (Model.Cursos.Count() > 0) { 
+            <br /><br />
+            <table class="table table-striped border">
+                <tr class="table-secondary">
+                    <th>@Html.DisplayNameFor(m => m.Cursos.First().Id)</th>
+                    <th>@Html.DisplayNameFor(m => m.Cursos.First().NameCourse)</th>
+                    <th>@Html.DisplayNameFor(m => m.Cursos.First().CountClass)</th>
+                    <th>@Html.DisplayNameFor(m => m.Cursos.First().Price)</th>
+                    <th>@Html.DisplayNameFor(m => m.Cursos.First().DateCreation)</th>
+                    <th>Acciones</th>
+                </tr>
+                @foreach(var item in Model.Cursos){
+                    <tr>
+                        <td>@Html.DisplayFor(m => item.Id)</td>
+                        <td>@Html.DisplayFor(m => item.NameCourse)</td>
+                        <td>@Html.DisplayFor(m => item.CountClass)</td>
+                        <td>@Html.DisplayFor(m => item.Price)</td>
+                        <td>@Html.DisplayFor(m => item.DateCreation)</td>
+                        <td>
+                            <a asp-route-id="@item.Id" 
+                               asp-page="Editar" 
+                               class="btn-primary btn-warning btn-sm">Editar</a>
+                            <button asp-page-handler="Borrar" 
+                                    asp-route-id="@item.Id"
+                                    onclick="retunr confirm('¿Estás seguro de borrar el registro?')"
+                                    class="btn btn-danger btn-sm">
+                                Borrar
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </table>
+        } else {
+            <p>Sin cursos disponibles</p>
+        }
+    </div>
+</div>
