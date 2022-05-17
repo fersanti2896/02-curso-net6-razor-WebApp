@@ -35,9 +35,11 @@
                         <td>@Html.DisplayFor(m => item.Price)</td>
                         <td>@Html.DisplayFor(m => item.DateCreation)</td>
                         <td>
-                            <a asp-route-id="@item.Id" 
+                            <button asp-route-id="@item.Id" 
                                asp-page="Editar" 
-                               class="btn-primary btn-warning btn-sm">Editar</a>
+                               class="btn btn-warning btn-sm">
+                                Editar
+                            </button>
                             <button asp-page-handler="Borrar" 
                                     asp-route-id="@item.Id"
                                     onclick="retunr confirm('¿Estás seguro de borrar el registro?')"
